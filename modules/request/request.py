@@ -1,44 +1,40 @@
 import requests
 import pandas as pd
 import json
-from modules.conexionSQL.conexionBD import conexionesSQL
+import logging
+from modules.conexionSQL.conexionBD import ConexionesSQL
 
-###############################################
-class requestApi():
-    def __init__(self, url : str):
+# Configuración del logging
+logging.basicConfig(
+    filename='request.log',  # Nombre del archivo de log
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+class RequestApi:
+    def __init__(self, url: str):
         self.url = url
-        self._conexionPostgres = conexionesSQL.conexionPostgres()
+        self._conexion_postgres = ConexionesSQL.conexion_postgres()
 
-    def requestAnime(self):
-        link = self.url
-        data = requests.get(link)
-        titulo,episodios,tipo,estado = [],[],[],[]
-        conn = self._conexionPostgres
-        diccionario = {}
-
+    def request_anime(self):
         try:
-            if data.status_code == 200:
-                data = data.json()
+            response = requests.get(self.url)
+            response.raise_for_status()
+            data = response.json()
 
-                for e in data['data']:
-                    titulo.append(str(e['title']))
-                    episodios.append(str(e['episodes']))
-                    tipo.append(str(e['status']))
-                    estado.append(str(e['status']))
+            animes = {
+                'Titulo_Anime': [str(e['title']) for e in data['data']],
+                'Episodios': [str(e['episodes']) for e in data['data']],
+                'Tipo': [str(e['status']) for e in data['data']],
+                'Estado': [str(e['status']) for e in data['data']],
+            }
 
-                diccionario.update({'Titulo_Anime':titulo,'Episodios'   :episodios,'tipo':tipo,'estado':estado})
-
-                data = pd.DataFrame.from_dict(diccionario)
-
-                ##### los datos obtenidos de la API se cargan en un csv ########
-                data.to_csv('listaanime.csv', sep  = ';',header=True, encoding='UTF-8')
-
-                ##### los datos del csv se cargan en la base de datos ########
-                df = pd.read_csv('listaanime.csv',sep=';').to_sql('lista_anime', conn, if_exists= 'replace', index= False)
-
-            else:
-                data
-
-            return data
+            df = pd.DataFrame(animes)
+            df.to_sql('lista_anime', self._conexion_postgres, if_exists='replace', index=False)
+            logging.info("Datos guardados exitosamente en la base de datos.")
+            return df
+        except requests.RequestException as e:
+            logging.error(f"Error al realizar la solicitud a la API: {e}")
         except Exception as e:
-            print(e)
+            logging.error(f"Error procesando los datos: {e}")
