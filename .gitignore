@@ -4,12 +4,7 @@ __pycache__/
 *$py.class
 
 # Ignorar archivos de entorno virtual
-venv/
-env/
-ENV/
 .venv/
-.ENV/
-
 # Ignorar archivos de configuración del entorno de desarrollo
 .vscode/
 .idea/
