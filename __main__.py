@@ -1,5 +1,4 @@
-import request.request as re
-
+import modules.request.request as re
 
 def main():
     url = 'https://api.jikan.moe/v4/top/anime'
