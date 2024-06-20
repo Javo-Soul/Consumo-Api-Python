@@ -1,4 +1,26 @@
-2024-06-05 18:06:10 - INFO - Conexión a PostgreSQL exitosa.
-2024-06-05 18:06:11 - INFO - Datos guardados exitosamente en la base de datos.
-2024-06-05 18:06:57 - INFO - Conexión a PostgreSQL exitosa.
-2024-06-05 18:06:59 - INFO - Datos guardados exitosamente en la base de datos.
+2024-06-19 20:58:37 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 20:58:38 - ERROR - Error procesando los datos: 'Titulo_Anime'
+2024-06-19 20:59:23 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 20:59:24 - ERROR - Error procesando los datos: 'Titulo_Anime'
+2024-06-19 20:59:49 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:00:30 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:01:30 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:03:07 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:03:18 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:03:48 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:04:28 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:05:04 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:05:55 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:05:56 - INFO - Nuevos datos guardados exitosamente en la base de datos.
+2024-06-19 21:07:51 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:07:53 - INFO - No se encontraron nuevos datos para insertar.
+2024-06-19 21:08:08 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:08:09 - INFO - Nuevos datos guardados exitosamente en la base de datos.
+2024-06-19 21:10:01 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:10:02 - INFO - Nuevos datos guardados exitosamente en la base de datos.
+2024-06-19 21:14:16 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:14:16 - INFO - Tabla 'lista_anime' verificada/creada exitosamente.
+2024-06-19 21:14:17 - INFO - Nuevos datos guardados exitosamente en la base de datos.
+2024-06-19 21:14:29 - INFO - Conexión a PostgreSQL exitosa.
+2024-06-19 21:14:29 - INFO - Tabla 'lista_anime' verificada/creada exitosamente.
+2024-06-19 21:14:30 - INFO - No se encontraron nuevos datos para insertar.
