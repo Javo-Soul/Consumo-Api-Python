@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+data
 # Ignorar archivos de entorno virtual
 .venv/
 # Ignorar archivos de configuración del entorno de desarrollo

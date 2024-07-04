@@ -48,6 +48,26 @@ Este proyecto es un script de ETL (Extract, Transform, Load) que obtiene datos d
     REDSHIFT_DBNAME=tu_base_de_datos
     REDSHIFT_PORT=tu_puerto
     ```
+## Docker
+en la terminal CMD usa
+
+docker-compose up
+
+cuando todos los servicios se encuentren funcionando comienza con la
+Configuración completa en pgAdmin
+
+    En el navegador, ve a http://localhost:8081.
+    Inicia sesión con el usuario admin@admin.com y la contraseña admin.
+    Haz clic derecho en "Servers" y selecciona "Create" -> "Server".
+    En la pestaña "General", ponle un nombre al servidor (por ejemplo, PostgresDB).
+    En la pestaña "Connection", ingresa la información de conexión:
+    Host name/address: db
+    Port: 5432
+    Username: postgres
+    Password: SAuser2025.
+    Maintenance Database: postgres
+    Haz clic en "Save" para guardar la configuración. Ahora deberías poder ver y acceder a la base de datos postgres y la tabla lista_anime desde pgAdmin.
+
 
 ## Uso
 
