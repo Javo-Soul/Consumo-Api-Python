@@ -17,7 +17,11 @@ logging.basicConfig(
 class RequestApi:
     def __init__(self, url: str):
         self.url = url
-        self._conexion_postgres = ConexionesSQL.conexion_postgres()
+        try:
+            self._conexion_postgres = ConexionesSQL.conexion_postgres()
+        except Exception as e:
+            logging.error(f"Error al establecer conexión con la base de datos: {e}")
+            raise
 
     def create_table_if_not_exists(self):
         create_table_query = '''
@@ -40,6 +44,7 @@ class RequestApi:
                 logging.info("Tabla 'lista_anime' verificada/creada exitosamente.")
         except SQLAlchemyError as e:
             logging.error(f"Error al crear/verificar la tabla en la base de datos: {e}")
+            raise
 
     def request_anime(self):
         try:
@@ -78,8 +83,10 @@ class RequestApi:
             return new_data
         except requests.RequestException as e:
             logging.error(f"Error al realizar la solicitud a la API: {e}")
+            return None
         except SQLAlchemyError as e:
             logging.error(f"Error en la base de datos: {e}")
+            return None
         except Exception as e:
             logging.error(f"Error procesando los datos: {e}")
-
+            return None
