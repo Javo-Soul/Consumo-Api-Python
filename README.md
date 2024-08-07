@@ -1,3 +1,11 @@
+# inicia el proyecto con
+```bash
+docker compose up airflow-init
+```
+```bash
+docker compose up --build
+```
+
 # ETL Project
 
 Este proyecto es un script de ETL (Extract, Transform, Load) que obtiene datos de una API, los procesa y los almacena en una base de datos AWS Redshift.
