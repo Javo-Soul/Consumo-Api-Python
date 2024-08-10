@@ -1,7 +1,15 @@
 # Consumo-Api-Python
 
 ## Descripción
-Este proyecto es un script de ETL (Extract, Transform, Load) que obtiene datos de una API, los procesa y los almacena en una base de datos AWS Redshift.
+Este proyecto es un script de ETL (Extract, Transform, Load) que obtiene datos de una API, los procesa y los almacena en una base de datos AWS Redshift/ base local Postgress.
+para alternar entre una conexion y otra revisar en el archivo request.py
+
+-----------------------------------------------
+class RequestApi:
+    def __init__(self, api:str = "https://api.jikan.moe/v4/top/anime"):            
+        self.urlTop = api 
+        self._conexion_server = ConexionesSQL.conexion_redshift()
+-----------------------------------------------
 
 ## Iniciar el Proyecto
 
@@ -33,21 +41,30 @@ docker compose up --build
 - `modules/`: Módulos de Python.
 - `venv/`: Entorno virtual de Python.
 
-
 ## Requisitos
 
 - Python 3.11.5
 - Las librerías listadas en `requirements.txt`
 - Un archivo `.env` con las siguientes variables:
 
-- POSTGRES_HOST=localhost
-- POSTGRES_USER=postgres
-- POSTGRES_PASSWORD=passxxx.
-- POSTGRES_PORT=5432
-- POSTGRES_DB=postgres
-- AIRFLOW_UID=1000
-- EMAIL_SUBJECT=xxxxxxx@gmail.com
-- EMAIL_PASSWORD=xxxxxxxx
+    -- POSTGRES_HOST=localhost
+    -- POSTGRES_USER=postgres
+    -- POSTGRES_PASSWORD=SAuser2025.
+    -- POSTGRES_PORT=5433
+    -- POSTGRES_DB=postgres
+    -- AIRFLOW_UID=1000
+    -- EMAIL_SUBJECT=email@gmail.com
+    -- EMAIL_PASSWORD=xxxxxxxxx
+
+    -- obtener clave Api spotify    
+    -- cliidSpotify = API-ID
+    -- clisecretSpotify = API-KEY-SECRET
+
+    -- REDSHIFT_HOST= url - redshift
+    -- REDSHIFT_USERNAME=redshift-user
+    -- REDSHIFT_PASSWORD=redshift-Pass
+    -- REDSHIFT_DBNAME=database
+    -- REDSHIFT_PORT=port
 
 ## Instalación
 
@@ -70,11 +87,25 @@ docker compose up --build
 
 4. Configura las variables de entorno en un archivo `.env` en la raíz del proyecto:
     ```env
-    REDSHIFT_HOST=tu_redshift_host
-    REDSHIFT_USERNAME=tu_usuario
-    REDSHIFT_PASSWORD=tu_contraseña
-    REDSHIFT_DBNAME=tu_base_de_datos
-    REDSHIFT_PORT=tu_puerto
+        POSTGRES_HOST=localhost
+        POSTGRES_USER=postgres
+        POSTGRES_PASSWORD=SAuser2025.
+        POSTGRES_PORT=5433
+        POSTGRES_DB=postgres
+
+        AIRFLOW_UID=1000
+        EMAIL_SUBJECT=email@gmail.com
+        EMAIL_PASSWORD=xxxxxxxxx
+
+        -- obtener clave Api spotify    
+        cliidSpotify = API-ID
+        clisecretSpotify = API-KEY-SECRET
+
+        REDSHIFT_HOST= url - redshift
+        REDSHIFT_USERNAME=redshift-user
+        REDSHIFT_PASSWORD=redshift-Pass
+        REDSHIFT_DBNAME=database
+        REDSHIFT_PORT=port
     ```
 
 ## Uso

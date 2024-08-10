@@ -8,7 +8,7 @@ data
 # Ignorar archivos de configuración del entorno de desarrollo
 .vscode/
 .idea/
-
+.venv/
 # Ignorar archivos de logs
 *.log
 
@@ -24,6 +24,7 @@ Thumbs.db
 
 # Ignorar archivos de configuraciones locales
 *.local
-
+logs/*
 # Ignorar archivo de variables de entorno
 .env
+.cache

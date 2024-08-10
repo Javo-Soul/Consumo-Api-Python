@@ -7,9 +7,13 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.operators.bash import BashOperator
 
-def fetch_anime_data():
-    api = RequestApi().request_anime()
-    return api
+def fetch_lista_anime():
+    apiTop     = RequestApi().request_anime()
+    return apiTop
+
+def fetch_lista_canciones():
+    apiSpotify = RequestApi().request_top_spo()
+    return apiSpotify 
 
 default_args = {
     'owner': 'airflow',
@@ -26,24 +30,16 @@ with DAG(
     schedule_interval='@daily',
 ) as dag:
 
-    fetch_anime_task = PythonOperator(
+    fetch_anime_lista = PythonOperator(
         task_id='fetch_anime_data',
-        python_callable=fetch_anime_data,
+        python_callable=fetch_lista_anime,
         provide_context=True
     )
 
-    populate_data = SQLExecuteQueryOperator(
-        task_id='insertar_en_tabla',
-        sql="""
-        truncate table public.lista_anime;
-
-        INSERT INTO public.lista_anime(
-            "Titulo_Anime", "Episodios", "Tipo", "Estado")
-            VALUES 
-                ('anime1', 5, 'xtipo', 'finalizado'),
-                ('anime2', 5, 'xtipo', 'finalizado');
-        """,
-        conn_id="postgres_operator_dag"
+    fetch_anime_spotify = PythonOperator(
+        task_id='fetch_anime_canciones',
+        python_callable=fetch_lista_canciones,
+        provide_context=True
     )
 
     email_massive = PythonOperator(
@@ -57,4 +53,4 @@ with DAG(
         bash_command='echo "{{ var.value.subject_mail }} --> {{ var.value.email }} -> {{ var.value.email_password }}"',
     )
 
-    fetch_anime_task >> populate_data >> printer_airflow_variables >> email_massive
+    fetch_anime_lista >> fetch_anime_spotify >> printer_airflow_variables >> email_massive
